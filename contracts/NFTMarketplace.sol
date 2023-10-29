@@ -45,6 +45,10 @@ contract NFTMarketplace is ERC721URIStorage {
     // about a token from its tokenId
     mapping(uint256 => ListedToken) private idToListedToken;
 
+    constructor() ERC721("NFTMarketplace", "NFTM") {
+        owner = payable(msg.sender);
+    }
+
     // The first time a token is created, it is listed here
     function createToken(
         string memory tokenURI,
@@ -184,7 +188,4 @@ contract NFTMarketplace is ERC721URIStorage {
         return _tokenIds.current();
     }
 
-    constructor() ERC721("NFTMarketplace", "NFTM") {
-        owner = payable(msg.sender);
-    }
 }
